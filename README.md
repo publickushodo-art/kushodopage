@@ -4,7 +4,7 @@
 **この README はサイトの仕組みを変える人（開発担当）向け**です。お知らせや書展を更新するだけなら [docs/運用マニュアル.md](docs/運用マニュアル.md) を読んでください。
 
 - サイトの本体: [Astro](https://astro.build/)（静的サイト）
-- 公開: [Cloudflare Pages](https://pages.cloudflare.com/)（GitHub の `master` に push すると自動で公開）
+- 公開: [Cloudflare Workers](https://developers.cloudflare.com/workers/)（GitHub の `master` に push すると自動でビルドして公開）
 - 文章・画像の管理: [microCMS](https://microcms.jp/)（管理画面で公開すると自動でサイトを作り直す）
 - パンフレット PDF: Google Drive
 
@@ -13,8 +13,8 @@
 ## 全体の流れ
 
 ```
-microCMS で公開 ──Webhook──▶ Cloudflare Pages がビルド ──▶ サイトに反映（数分）
-GitHub に push ─────────────▶ Cloudflare Pages がビルド ──▶ サイトに反映
+microCMS で公開 ──Webhook──▶ Cloudflare がビルド ──▶ サイトに反映（数分）
+GitHub に push ─────────────▶ Cloudflare がビルド ──▶ サイトに反映
 ```
 
 ビルドのときに microCMS からすべてのデータを取ってきて、HTML を作り切ります。表示するたびに microCMS へ問い合わせることはありません。
@@ -28,7 +28,7 @@ GitHub に push ─────────────▶ Cloudflare Pages が�
 | --- | --- | --- | --- |
 | GitHub `publickushodo-art/kushodopage` | コード | 京大書道部のアカウント（publickushodo-art）。開発担当を Collaborator に追加する | 旧リポジトリ `magarikado0/kushodopage` は使わない |
 | microCMS（サービス `kushodo`） | 文章・画像 | 京大書道部の Google アカウントでも入れる | 無料プラン（API は5個まで。4個使用中） |
-| Cloudflare Pages（`kushodopage`） | 公開 | **個人アカウント（要移行）** | 下の「Cloudflare を部のアカウントに移す」 |
+| Cloudflare Workers（`kushodopage`） | 公開・DNS | 京大書道部のアカウント | `kushodopage.public-kushodo.workers.dev` |
 | Google Drive | パンフレット PDF | 京都大学書道部広報係（public.kushodo@gmail.com） | 「パンフレット」フォルダ。「リンクを知っている全員」で共有 |
 | ドメイン `kushodo.club` | URL | **要確認**（登録先・更新時期） | 期限切れに注意 |
 | さくらのレンタルサーバー `kshodobu.sakura.ne.jp` | 旧サイト・部員用ページ | **要確認** | |
@@ -99,7 +99,7 @@ npm run preview   # できたものを確認
 | `.pdf` で終わる URL | 同じくビューアー |
 | それ以外（旧サイトの BiB/i など） | そのリンクを開く |
 
-Drive の PDF はブラウザから直接読めないので、`functions/pamphlet/[id].js`（Cloudflare Pages Functions）が中継します。
+Drive の PDF はブラウザから直接読めないので、`worker/index.js` が `/pamphlet/〇〇` で中継します。
 
 - 中継するのは、ビルド時に作る `/pamphlets.json`（書展 ID → Drive のファイル ID）に載っているファイルだけです。他人のファイルの中継には使えません。
 - 取得した PDF は Cloudflare に 7 日間キャッシュします。キャッシュは Drive のファイル ID ごとなので、新しいファイルのリンクに貼り替えればすぐ反映されます。Drive 上で同じファイルを上書きした場合は、最大 7 日間古いものが出ます。
@@ -109,35 +109,43 @@ Drive の PDF はブラウザから直接読めないので、`functions/pamphle
 
 ---
 
-## 公開（Cloudflare Pages）
+## 公開（Cloudflare Workers）
+
+サイト本体は `dist/` の静的ファイルで、Cloudflare がそのまま配信します。`wrangler.jsonc` に設定があり、次の URL だけ `worker/index.js` が先に動きます。
+
+| URL | 処理 |
+| --- | --- |
+| `/pamphlet/〇〇` | Google Drive のパンフレット PDF の中継 |
+| `/bib/*` | 旧サイトのパンフレットのリンク（`/bib/i/?book=123`）を、その回のビューアーへ転送（URL の `?` 以降は `_redirects` で扱えないため） |
+
+旧サイトのページ（`about.html` など）からの転送は `public/_redirects` に書いてあります。
+
+### Cloudflare の設定（Workers & Pages → `kushodopage` → Settings → Builds）
 
 | 設定 | 値 |
 | --- | --- |
-| Framework preset | Astro |
+| Git リポジトリ | `publickushodo-art/kushodopage`、ブランチ `master` |
 | Build command | `npm run build` |
-| Build output directory | `dist` |
-| 環境変数 | `MICROCMS_SERVICE_DOMAIN`、`MICROCMS_API_KEY`（**Production と Preview の両方**に入れる） |
+| Deploy command | `npx wrangler deploy` |
+| Root directory（Path） | 空のまま（`/`） |
+| Build variables（ビルド時の環境変数） | `MICROCMS_SERVICE_DOMAIN`、`MICROCMS_API_KEY`（種類は Secret） |
 
-- `master` 以外のブランチを push すると、`ブランチ名.kushodopage.pages.dev` にプレビューができます。Preview に環境変数がないと、プレビューでは microCMS の中身が空になります。
-- 旧サイトの URL（`about.html` など）からの転送は `public/_redirects` に書いてあります。旧サイトのパンフレットのリンク（`/bib/i/?book=123`）は、URL の `?` 以降を `_redirects` で扱えないので、`functions/bib/[[path]].js` でその回のビューアーへ転送しています。
+- microCMS のキーはビルドのときにだけ使います。公開されるファイルには含まれません。Cloudflare に入れるのは、読み取り専用の API キーにしてください（README の「環境変数」）。
+- `wrangler.jsonc` の `name` は、ダッシュボードの Worker 名（`kushodopage`）と同じにしてください。違うとデプロイに失敗します。
 
 ### microCMS の更新で自動ビルドする
 
-1. Cloudflare → Pages プロジェクト → Settings → Builds で **Deploy hook** を作る（ブランチは `master`）
-2. microCMS → 各 API（`news`・`exhibitions`・`performances`・`settings`）→ API 設定 → **Webhook** に、上の URL を登録する
+1. Cloudflare → Workers & Pages → `kushodopage` → Settings → Builds → **Deploy Hooks** で、ブランチ `master` のフックを作り、URL をコピーする
+2. microCMS → 各 API（`news`・`exhibitions`・`performances`・`settings`）→ API 設定 → **Webhook** に、その URL を登録する
 
 **新しい API を作ったら、Webhook の設定も忘れずに。** 忘れると、その API を更新してもサイトが変わりません。
 
-### Cloudflare を部のアカウントに移す
+### 手元で Cloudflare と同じ動きを確かめる
 
-Cloudflare はメンバーを追加するとアカウント内の全プロジェクトが見えてしまうので、**部の Google アカウントで Cloudflare アカウントを新しく作り、そこでプロジェクトを作り直す**のが確実です（プロジェクトを別のアカウントへ移す機能はありません）。
-
-1. 部の Google アカウントで Cloudflare に登録する
-2. Workers & Pages → Create → Pages → Connect to Git で、GitHub の `kushodopage` を選ぶ（上の表のとおり設定する）
-3. Production と Preview に環境変数を入れる
-4. Custom domains に `kushodo.club` を追加し、ドメインの DNS を新しいプロジェクトに向ける
-5. 新しいプロジェクトで Deploy hook を作り、microCMS の Webhook の URL を差し替える
-6. 動作を確かめてから、古いプロジェクトを削除する
+```bash
+npm run build
+npx wrangler dev   # http://localhost:8787 （パンフレットの中継や旧 URL の転送も動く）
+```
 
 ---
 
@@ -156,7 +164,8 @@ src/
 ├── pages/             URL ごとのページ（about.astro → /about）
 ├── styles/global.css  色・書体などの共通設定
 └── types/content.ts   microCMS のデータの型
-functions/              Cloudflare Pages Functions（pamphlet/: パンフレット PDF の中継、bib/: 旧パンフレット URL の転送）
+worker/index.js        Cloudflare Workers の処理（パンフレット PDF の中継、旧パンフレット URL の転送）
+wrangler.jsonc         Cloudflare Workers の設定
 scripts/               旧サイトからの移行スクリプト
 public/                画像・_redirects など、そのまま公開するファイル
 docs/                  運用マニュアル（編集担当向け）

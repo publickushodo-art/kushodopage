@@ -1,0 +1,22 @@
+// Cloudflare Workers の設定。
+// サイト本体は dist/ の静的ファイルをそのまま配信し、パンフレットの中継などだけ worker/index.js で処理する。
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  // Cloudflare のダッシュボードの Worker 名と同じにする（違うとデプロイに失敗する）
+  "name": "kushodopage",
+  "compatibility_date": "2026-11-01",
+  "main": "worker/index.js",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // /about/ ではなく /about で表示する（サイト内のリンクと同じ形）
+    "html_handling": "drop-trailing-slash",
+    // 存在しない URL では dist/404.html を返す
+    "not_found_handling": "404-page",
+    // この URL だけ、静的ファイルより先に worker/index.js を動かす
+    "run_worker_first": ["/pamphlet/*", "/bib/*", "/bib"]
+  },
+  "observability": {
+    "enabled": true
+  }
+}
