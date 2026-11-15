@@ -30,7 +30,7 @@ GitHub に push ─────────────▶ Cloudflare がビル�
 | microCMS（サービス `kushodo`） | 文章・画像 | 京大書道部の Google アカウントでも入れる | 無料プラン（API は5個まで。4個使用中） |
 | Cloudflare Workers（`kushodopage`） | 公開・DNS | 京大書道部のアカウント | `kushodopage.public-kushodo.workers.dev` |
 | Google Drive | パンフレット PDF | 京都大学書道部広報係（public.kushodo@gmail.com） | 「パンフレット」フォルダ。「リンクを知っている全員」で共有 |
-| ドメイン `kushodo.club` | URL | **要確認**（登録先・更新時期） | 期限切れに注意 |
+| ドメイン `kushodo.club` | URL | 登録はお名前.com（**支払い方法・自動更新は要確認**）、DNS は Cloudflare | **期限 2027年7月17日**。期限前に Cloudflare への移管も検討（移管すると1年延長） |
 | さくらのレンタルサーバー `kshodobu.sakura.ne.jp` | 旧サイト・部員用ページ | **要確認** | |
 
 > 引き継ぐときは、この表の「要確認」を埋めて、次の担当者が入れることを必ず確かめてください。
