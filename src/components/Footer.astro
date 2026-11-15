@@ -21,7 +21,8 @@ import { NAV_ITEMS, SITE } from '~/libs/site';
     </nav>
 
     <div class="footer-copy">
-      © {new Date().getFullYear()} {SITE.name}
+      <a class="footer-archive" href="/archive/index.html">以前のサイト（保存版）</a>
+      <span>© {new Date().getFullYear()} {SITE.name}</span>
     </div>
   </div>
 </footer>
@@ -80,10 +81,22 @@ import { NAV_ITEMS, SITE } from '~/libs/site';
   }
 
   .footer-copy {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.6rem;
     font-family: var(--font-sans);
     font-size: 14px;
     letter-spacing: 0.04em;
     color: var(--color-footer-copy);
+  }
+
+  .footer-archive {
+    color: var(--color-footer-muted);
+    transition: color 0.2s ease;
+  }
+
+  .footer-archive:hover {
+    color: var(--color-footer-text);
   }
 
   @media (max-width: 760px) {

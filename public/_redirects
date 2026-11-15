@@ -1,4 +1,5 @@
-# 旧サイト（kushodo.club）の URL を新しいページへ転送する。パンフレット（/bib/i/?book=〇〇）は functions/bib/[[path]].js で転送
+# 旧サイト（kushodo.club）の URL を新しいページへ転送する。パンフレット（/bib/i/?book=〇〇）は worker/index.js で転送
+# 旧サイトそのものは /archive/ に保存版として置いてある（public/archive）
 /news/121_shoten.html /news/121_shoten 301
 /news/122_shoten.html /news/122_shoten 301
 /news/123_shoten.html /news/123_shoten 301

@@ -1,0 +1,316 @@
+/* CSS Document */
+
+/* ナビゲーションのスタイル設定 */
+.none-dec {
+  color: black;
+  text-decoration: none;
+}
+
+.none-dec:hover {
+  color: gray
+}
+
+/* 最新情報欄の区切り線 */
+.news {
+  border-bottom: dotted 2px #dddddd;
+}
+
+/* SNSボタンのスタイル設定 */
+/* twitter */
+.btn-twitter {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.btn-twitter:hover {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #319AEA;
+}
+
+.btn-twitter:focus, .btn-twitter.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-twitter.disabled, .btn-twitter:disabled {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #55acee;
+}
+
+.btn-twitter:not(:disabled):not(.disabled):active, .btn-twitter:not(:disabled):not(.disabled).active,
+.show > .btn-twitter.dropdown-toggle {
+  color: #fff;
+  background-color: #55acee;
+  border-color: #319AEA;
+}
+
+.btn-twitter:not(:disabled):not(.disabled):active:focus, .btn-twitter:not(:disabled):not(.disabled).active:focus,
+.show > .btn-twitter.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/* facebook */
+.btn-facebook {
+  color: #fff;
+  background-color: #3B5998;
+  border-color: #3B5998;
+}
+
+.btn-facebook:hover {
+  color: #fff;
+  background-color: #3B5998;
+  border-color: #334D76;
+}
+
+.btn-facebook:focus, .btn-facebook.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-facebook.disabled, .btn-facebook:disabled {
+  color: #fff;
+  background-color: #3B5998;
+  border-color: #3B5998;
+}
+
+.btn-facebook:not(:disabled):not(.disabled):active, .btn-facebook:not(:disabled):not(.disabled).active,
+.show > .btn-facebook.dropdown-toggle {
+  color: #fff;
+  background-color: #3B5998;
+  border-color: #334D76;
+}
+
+.btn-facebook:not(:disabled):not(.disabled):active:focus, .btn-facebook:not(:disabled):not(.disabled).active:focus,
+.show > .btn-facebook.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+
+/* youtube */
+.btn-youtube {
+  color: #fff;
+  background-color: #cd201f;
+  border-color: #cd201f;
+}
+
+.btn-youtube:hover {
+  color: #fff;
+  background-color: #cd201f;
+  border-color: #B31B1B;
+}
+
+.btn-youtube:focus, .btn-youtube.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-youtube.disabled, .btn-youtube:disabled {
+  color: #fff;
+  background-color: #cd201f;
+  border-color: #cd201f;
+}
+
+.btn-youtube:not(:disabled):not(.disabled):active, .btn-youtube:not(:disabled):not(.disabled).active,
+.show > .btn-youtube.dropdown-toggle {
+  color: #fff;
+  background-color: #cd201f;
+  border-color: #cd201f;
+}
+
+.btn-youtube:not(:disabled):not(.disabled):active:focus, .btn-youtube:not(:disabled):not(.disabled).active:focus,
+.show > .btn-youtube.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+
+/* vimeo */
+.btn-vimeo {
+  color: #fff;
+  background-color: #1ab7ea;
+  border-color: #1ab7ea;
+}
+
+.btn-vimeo:hover {
+  color: #fff;
+  background-color: #1ab7ea;
+  border-color: #1ab7ea;
+}
+
+.btn-vimeo:focus, .btn-vimeo.focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-vimeo.disabled, .btn-vimeo:disabled {
+  color: #fff;
+  background-color: #1ab7ea;
+  border-color: #1ab7ea;
+}
+
+.btn-vimeo:not(:disabled):not(.disabled):active, .btn-vimeo:not(:disabled):not(.disabled).active,
+.show > .btn-vimeo.dropdown-toggle {
+  color: #fff;
+  background-color: #1ab7ea;
+  border-color: #1ab7ea;
+}
+
+.btn-vimeo:not(:disabled):not(.disabled):active:focus, .btn-vimeo:not(:disabled):not(.disabled).active:focus,
+.show > .btn-vimeo.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+/* 画像のコピーガード */
+img {
+pointer-events: none;
+}
+
+/* times new roman */
+.font-times {
+  font-family: 'Times New Roman';
+}
+
+/* カードヘッダのどこをクリックしても開閉可能 */
+.card .card-header a[data-toggle="collapse"] {
+  display: block;
+  padding: .75rem 1.25rem;
+  margin: -.75rem -1.25rem;
+  color: black;
+}
+.card .card-header a[data-toggle="collapse"]:active,
+.card .card-header a[data-toggle="collapse"]:hover,
+.card .card-header a[data-toggle="collapse"]:focus {
+  text-decoration: none;
+  color: black;
+}
+
+/* footer */
+.copyright {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #dddddd;
+}
+
+/* 画像リンク */
+.img_opa {
+    opacity: 1;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+.img_opa:hover {
+    opacity: .5;
+}
+
+/* 最新情報欄のスクロール設定 */
+.newinfo {
+    width: 100%;
+    height: 400px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+.newinfo iframe{
+    width: 100%;
+    height: 100%;
+}
+.newinfo::-webkit-scrollbar{
+    display:none;
+}
+
+/* ページトップに戻るボタンのスタイル設定 */
+#page-top {
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    display: none;
+    right: 5px;
+    bottom:20px;
+}
+#page-top a {
+    width: 60px;
+    height: 60px;
+    text-decoration: none;
+}
+#page-top a:before{
+    font-family: FontAwesome;
+    content: '\f139';
+    font-size: 60px;
+    color: #aaa;
+}
+#page-top a:hover:before {
+    font-family: FontAwesome;
+    content: '\f139';
+    font-size: 60px;
+    color: #999;
+}
+
+/* もっと見るボタンのスタイル設定 */
+.cp_box *, .cp_box *:before, .cp_box *:after {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+.cp_box {
+	position: relative;
+}
+.cp_box label {
+	position: absolute;
+	z-index: 1;
+	bottom: 0;
+	width: 100%;
+	height: 100px; /* グラデーションの高さ */
+	cursor: pointer;
+	text-align: center;
+	/* 以下グラデーション */
+	background: linear-gradient(to bottom, rgba(250, 252, 252, 0) 0%, rgba(250, 252, 252, 0.95) 90%);
+}
+.cp_box input:checked + label {
+	background: inherit; /* 開いた時にグラデーションを消す */
+}
+.cp_box label:after {
+	line-height: 2.5rem;
+	position: absolute;
+	z-index: 2;
+	bottom: 20px;
+	left: 50%;
+	width: 14rem;
+	font-family: FontAwesome;
+	content: '\f13a'' もっと見る';
+	transform: translate(-50%, 0);
+	letter-spacing: 0.05em;
+	color: #696969;
+	border-radius: 20px;
+	background-color: rgba(198, 250, 239, 1);
+}
+.cp_box label:hover:after {
+    line-height: 2.5rem;
+	position: absolute;
+	z-index: 2;
+	bottom: 20px;
+	left: 50%;
+	width: 14rem;
+	font-family: FontAwesome;
+	content: '\f13a'' もっと見る';
+	transform: translate(-50%, 0);
+	letter-spacing: 0.05em;
+	color: #696969;
+	border-radius: 20px;
+	background-color: rgba(198, 250, 239, 0.70);
+}
+.cp_box input {
+	display: none;
+}
+.cp_box .cp_container {
+	overflow: hidden;
+	height: 330px; /* 開く前に見えている部分の高さ */
+	transition: all 0.5s;
+}
+.cp_box input:checked + label {
+	/* display: none ; 閉じるボタンを消す場合解放 */
+}
+.cp_box input:checked + label:after {
+	font-family: FontAwesome;
+	content: '\f139'' 閉じる';
+}
+.cp_box input:checked ~ .cp_container {
+	height: auto;
+	padding-bottom: 80px; /* 閉じるボタンのbottomからの位置 */
+	transition: all 0.5s;
+}

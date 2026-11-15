@@ -1,0 +1,220 @@
+body,ul,li,tr,td,p,h1,h2,h3,h4,h5 {
+	font-family: "?l?r ?o?S?V?b?N", Osaka, "?q???M?m?p?S Pro W3";
+	margin:0;
+	padding:0;
+	word-spacing: 1.25em;
+}
+#wrapper #header ul {
+	display: inline;
+	position: absolute;
+	float: left;
+	color: #ffffff;
+	bottom: 5px;
+	right: 15px;
+}
+#wrapper #header li {
+	display: inline;
+}
+#wrapper #header a {
+	font-size: 11px;
+	color: #FFFFFF;
+}
+#wrapper #left_side #second_navi {
+	width: 270px;
+         height: 500px;
+	position: relative;
+	left: 15px;
+	top: 15px;
+	margin: 0px;
+	background-image: url(/archive/old/img/link_header.gif);
+	background-repeat: no-repeat;
+	padding-top: 7px;
+	padding-left: 25px;
+}
+
+#wrapper #left_side h2 {
+	font-size: 12px;
+	position: relative;
+	background-image: url(/archive/old/img/link_header.gif);
+	background-lrepeat: no-repeat;
+	height: 15px;
+	width: 245px;
+	padding-top: 10px;
+	padding-left: 25px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	float:left;
+}
+#wrapper #rigt_side h1 {
+	background-image: url(/archive/old/img/h1_bg.gif);
+	height: 25px;
+	width: 420px;
+	font-size: 16px;
+	margin-top: 5px;
+	color: #FFFFFF;
+	padding-top: 7px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 15px;
+}
+#wrapper #rigt_side p {
+	font-size: 14px;
+	line-height: 18px;
+	margin: 15px;
+	color: #333333;
+}
+#wrapper #main_img img {
+	position: absolute;
+	top: 20px;
+	left: 180px;
+}
+
+
+#wrapper #left_side #sub_link a {
+	text-indent: -9999px;
+	display: block;
+	height: 30px;
+	background-image: url(/archive/old/img/link_navi.gif);
+}
+
+#footer {
+	background-image: url(/archive/old/img/footer.gif);
+	background-repeat: no-repeat;
+clear: both;
+	height: 15px;
+	width: 750px;
+	float: left;
+	position: relative;
+	left: 5px;
+}
+
+#wrapper #left_side #welcome a{
+	background-position: 0px 0px;
+}
+#wrapper #left_side #welcome a:hover {
+	background-position: 0px -30px;
+}
+#wrapper #left_side #about_img a{
+	background-position: -270px 0px;
+}
+#wrapper #left_side #about_img a:hover {
+	background-position: -270px -30px;
+}
+
+#wrapper #left_side #about_link a{
+	background-position: -540px 0px;
+}
+#wrapper #left_side #about_link a:hover {
+	background-position: -540px -30px;
+}
+#wrapper #left_side #locale a{
+	background-position: -810px 0px;
+}
+#wrapper #left_side #locale a:hover {
+	background-position: -810px -30px;
+}
+
+#wrapper #left_side #member_org a{
+	background-position: -1080px 0px;
+}
+#wrapper #left_side #member_org a:hover {
+	background-position: -1080px -30px;
+}
+
+#wrapper #left_side #practice a{
+	background-position: -1350px 0px;
+}
+#wrapper #left_side #practice a:hover {
+	background-position: -1350px -30px;
+}
+
+#wrapper #left_side #shoten a{
+	background-position: -1620px 0px;
+}
+#wrapper #left_side #shoten a:hover {
+	background-position: -1620px -30px;
+}
+
+#wrapper #left_side #stay a{
+	background-position: -1890px 0px;
+}
+#wrapper #left_side #stay a:hover {
+	background-position: -1890px -30px;
+}
+#wrapper #left_side #other_event a{
+	background-position: -2160px 0px;
+}
+#wrapper #left_side #other_event a:hover {
+	background-position: -2160px -30px;
+}
+#wrapper #left_side ul {
+	width: 270px;
+         float: left;
+	margin: 0px;
+}
+
+div#wrapper {
+	background-image: url(/archive/old/img/wrapper_bg.gif);
+	background-repeat: repeat-y;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:left;
+	padding: 0px;
+	float: left;
+	height: 1500px;/*1000*/
+	width: 760px;
+	position: relative img/footer.gif;
+}
+#left_side {
+	height: 280px;
+/*	width: 270px;*/
+         width: 280px;
+	float: left;
+	position: relative;
+	left: 5px;
+	padding: 15px;
+}
+#rigt_side {
+/*	float: right;*/
+/*         width: 445px;*/
+	/*height: 1220px;*/
+	position: relative;
+	right: 5px;
+         margin-left: 280px;
+}
+#header {
+	background-image: url(/archive/old/img/header.gif);
+	background-repeat: no-repeat;
+	height: 120px;
+	width: 750px;
+	float: left;
+	position:relative ;
+	left: 5px;
+}
+<!-- #wrapper #main_img {
+	width: 0px;
+	height: 0px;
+	background-image: url(/archive/old/img/main.jpg);
+	background-repeat: no-repeat;
+	float: left; 
+	position: relative;
+	left: 5px; -->
+}<width: 750px; height: 242px;>
+strong {
+	color: #86B586;
+}
+#wrapper #rigt_side li {
+	margin-top: 2px;
+	margin-bottom: 2px;
+	margin-left: 15px;
+	font-size: 12px;
+}
+#wrapper #rigt_side ul {
+	list-style-image: none;
+	margin: 15px;
+}
+#wrapper #rigt_side h2 {
+	font-size: 14px;
+	margin: 5px;
+}

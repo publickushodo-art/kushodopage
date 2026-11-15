@@ -168,6 +168,7 @@ worker/index.js        Cloudflare Workers の処理（パンフレット PDF の
 wrangler.jsonc         Cloudflare Workers の設定
 scripts/               旧サイトからの移行スクリプト
 public/                画像・_redirects など、そのまま公開するファイル
+public/archive/        以前のサイトの保存版（2026年11月にさくらサーバーから取り込み。検索結果には出さない。基本的に触らない）
 docs/                  運用マニュアル（編集担当向け）
 ```
 
