@@ -25,3 +25,8 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# 引き継ぎ書（Word）は GitHub に置かない
+docs/引き継ぎ書.docx
+# Word などがファイルを開いている間にできる一時ファイル
+~$*
