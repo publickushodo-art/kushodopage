@@ -1,6 +1,7 @@
 ---
 import { NAV_ITEMS, SITE } from '~/libs/site';
 import { getSettings, socialLinks } from '~/libs/settings';
+import SocialIcon from '~/components/SocialIcon.astro';
 
 interface Props {
   current?: string;
@@ -19,6 +20,14 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
     <a class="nav-logo" href="/" aria-label={`${SITE.name} トップページ`}>
       <img src="/header.png" alt={SITE.name} />
     </a>
+    <div class="nav-sns-bar">
+      <a href={SOCIAL.x.url} target="_blank" rel="noopener" aria-label={`${SITE.name}の X`}>
+        <SocialIcon name="x" />
+      </a>
+      <a href={SOCIAL.instagram.url} target="_blank" rel="noopener" aria-label={`${SITE.name}の Instagram`}>
+        <SocialIcon name="instagram" />
+      </a>
+    </div>
     <button
       class="nav-toggle"
       type="button"
@@ -41,12 +50,7 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
         }
         <li class="nav-sns">
           <a href={SOCIAL.x.url} target="_blank" rel="noopener" aria-label={`${SITE.name}の X`}>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M17.75 3h3.07l-6.7 7.66L22 21h-6.17l-4.83-6.32L5.47 21H2.4l7.17-8.2L2 3h6.33l4.37 5.78L17.75 3Zm-1.08 16.18h1.7L7.4 4.73H5.58l11.09 14.45Z"
-              />
-            </svg>
+            <SocialIcon name="x" />
             <span class="nav-sns-label">X</span>
           </a>
           <a
@@ -55,11 +59,7 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
             rel="noopener"
             aria-label={`${SITE.name}の Instagram`}
           >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" />
-              <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
-              <circle cx="17.3" cy="6.7" r="1.2" fill="currentColor" />
-            </svg>
+            <SocialIcon name="instagram" />
             <span class="nav-sns-label">Instagram</span>
           </a>
         </li>
@@ -107,6 +107,24 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
 
   .nav-toggle {
     display: none;
+  }
+
+  /* スマホ用のアイコン（パソコンではメニューの中に出すので隠す） */
+  .nav-sns-bar {
+    display: none;
+  }
+
+  .nav-sns-bar a {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--color-text);
+  }
+
+  .nav-sns-bar :global(svg) {
+    width: 20px;
+    height: 20px;
   }
 
   .nav-links ul {
@@ -175,7 +193,7 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
     display: none;
   }
 
-  .nav-sns svg {
+  .nav-sns :global(svg) {
     width: 18px;
     height: 18px;
   }
@@ -309,24 +327,24 @@ const joinLink = NAV_ITEMS[NAV_ITEMS.length - 1];
     }
   }
 
-  /* スマホのメニューでは、ロゴの横に名前も出す */
+  /* スマホでは X・Instagram をヘッダーのバーに出し、メニューの中からは外す */
   @media (max-width: 960px) {
-    .nav-sns {
-      gap: 1.5rem;
-      margin-left: 0;
-    }
-
-    .nav-links .nav-sns a {
+    .nav-sns-bar {
       display: flex;
-      padding: 0.85rem 0.1rem;
+      flex-shrink: 0;
+      margin-left: auto;
     }
 
-    .nav-sns-label {
-      position: static;
-      width: auto;
-      height: auto;
-      overflow: visible;
-      clip: auto;
+    .nav-toggle {
+      flex-shrink: 0;
+    }
+
+    .nav-sns-bar + .nav-toggle {
+      margin-left: 0.25rem;
+    }
+
+    .nav-links .nav-sns {
+      display: none;
     }
   }
 </style>
