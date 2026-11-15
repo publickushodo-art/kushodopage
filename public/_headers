@@ -1,3 +1,6 @@
 # 以前のサイトの保存版は検索結果に出さない（古い練習日などで新入生が迷わないように）
 /archive/*
   X-Robots-Tag: noindex
+
+/archive
+  X-Robots-Tag: noindex
